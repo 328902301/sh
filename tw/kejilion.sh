@@ -1,5 +1,5 @@
 #!/bin/bash
-sh_v="4.0.8"
+sh_v="4.0.9"
 
 
 gl_hui='\e[37m'
@@ -3682,7 +3682,7 @@ add_forwarding_service() {
 	send_stats "添加frp內網服務"
 	# 提示用戶輸入服務名稱和轉發信息
 	read -e -p "請輸入服務名稱:" service_name
-	read -e -p "請輸入轉發類型 (tcp/udp) [回車默認tcp]:" service_type
+	read -e -p "請輸入轉發類型 (tcp/udp) [回​​車默認tcp]:" service_type
 	local service_type=${service_type:-tcp}
 	read -e -p "請輸入內網IP [回車默認127.0.0.1]:" local_ip
 	local local_ip=${local_ip:-127.0.0.1}
@@ -8535,6 +8535,8 @@ while true; do
 	  echo -e "${gl_kjlan}85.  ${color85}immich圖片視頻管理器${gl_kjlan}86.  ${color86}jellyfin媒體管理系統"
 	  echo -e "${gl_kjlan}87.  ${color87}SyncTV一起看片神器${gl_kjlan}88.  ${color88}Owncast自託管直播平台"
 	  echo -e "${gl_kjlan}------------------------"
+	  echo -e "${gl_kjlan}b.   ${gl_bai}備份全部應用數據${gl_kjlan}r.   ${color88}還原全部應用數據"
+	  echo -e "${gl_kjlan}------------------------"
 	  echo -e "${gl_kjlan}0.   ${gl_bai}返回主菜單"
 	  echo -e "${gl_kjlan}------------------------${gl_bai}"
 	  read -e -p "請輸入你的選擇:" sub_choice
@@ -10918,10 +10920,12 @@ while true; do
 
 		docker_rum() {
 
+			read -e -p "設定${docker_name}的登錄密鑰（sk-開頭字母和數字組合）如: sk-159kejilionyyds163:" app_passwd
+
 			mkdir -p /home/docker/gpt-load && \
 			docker run -d --name gpt-load \
 				-p ${docker_port}:3001 \
-				-e AUTH_KEY=sk-123456 \
+				-e AUTH_KEY=${app_passwd} \
 				-v "/home/docker/gpt-load/data":/app/data \
 				tbphp/gpt-load:latest
 
@@ -10929,7 +10933,7 @@ while true; do
 
 		local docker_describe="高性能AI接口透明代理服务"
 		local docker_url="官网介绍: https://www.gpt-load.com/"
-		local docker_use="echo \"默认管理密钥: sk-123456\""
+		local docker_use=""
 		local docker_passwd=""
 		local app_size="1"
 		docker_app
@@ -11135,6 +11139,73 @@ while true; do
 
 		  ;;
 
+	  b)
+	  	clear
+	  	send_stats "全部應用備份"
+
+	  	local backup_filename="app_$(date +"%Y%m%d%H%M%S").tar.gz"
+	  	echo -e "${gl_huang}正在備份$backup_filename ...${gl_bai}"
+	  	cd / && tar czvf "$backup_filename" home
+
+	  	while true; do
+			clear
+			echo "備份文件已創建: /$backup_filename"
+			read -e -p "要傳送備份數據到遠程服務器嗎？ (Y/N):" choice
+			case "$choice" in
+			  [Yy])
+				read -e -p "請輸入遠端服務器IP:" remote_ip
+				if [ -z "$remote_ip" ]; then
+				  echo "錯誤: 請輸入遠端服務器IP。"
+				  continue
+				fi
+				local latest_tar=$(ls -t /app*.tar.gz | head -1)
+				if [ -n "$latest_tar" ]; then
+				  ssh-keygen -f "/root/.ssh/known_hosts" -R "$remote_ip"
+				  sleep 2  # 添加等待时间
+				  scp -o StrictHostKeyChecking=no "$latest_tar" "root@$remote_ip:/"
+				  echo "文件已傳送至遠程服務器/根目錄。"
+				else
+				  echo "未找到要傳送的文件。"
+				fi
+				break
+				;;
+			  *)
+				echo "注意: 目前備份僅包含docker項目，不包含寶塔，1panel等建站面板的數據備份。"
+				break
+				;;
+			esac
+	  	done
+
+		  ;;
+
+	  r)
+	  	root_use
+	  	send_stats "全部應用還原"
+	  	echo "可用的應用備份"
+	  	echo "-------------------------"
+	  	ls -lt /app*.gz | awk '{print $NF}'
+	  	echo ""
+	  	read -e -p  "回車鍵還原最新的備份，輸入備份文件名還原指定的備份，輸入0退出：" filename
+
+	  	if [ "$filename" == "0" ]; then
+			  break_end
+			  linux_panel
+	  	fi
+
+	  	# 如果用戶沒有輸入文件名，使用最新的壓縮包
+	  	if [ -z "$filename" ]; then
+			  local filename=$(ls -t /app*.tar.gz | head -1)
+	  	fi
+
+	  	if [ -n "$filename" ]; then
+		  	  echo -e "${gl_huang}正在解壓$filename ...${gl_bai}"
+		  	  cd / && tar -xzf "$filename"
+			  echo "應用數據已還原，目前請手動進入指定應用菜單，更新應用，即可還原應用。"
+	  	else
+			  echo "沒有找到壓縮包。"
+	  	fi
+
+		  ;;
 
 	  0)
 		  kejilion
@@ -11295,7 +11366,7 @@ linux_work() {
 			  ;;
 
 		  22)
-			  read -e -p "請輸入你創建或進入的工作區名稱，如1001 kj001 work1:" SESSION_NAME
+			  read -e -p "請輸入你創建或進入的工作區名稱，如1​​001 kj001 work1:" SESSION_NAME
 			  tmux_run
 			  send_stats "自定義工作區"
 			  ;;

@@ -1,5 +1,5 @@
 #!/bin/bash
-sh_v="4.0.8"
+sh_v="4.0.9"
 
 
 gl_hui='\e[37m'
@@ -1185,7 +1185,7 @@ iptables_panel() {
 
 			  5)
 				  # IP whitelist
-				  read -e -p "Please enter the IP or IP segment to release:" o_ip
+				  read -e -p "Please enter the IP or IP segment to be released:" o_ip
 				  allow_ip $o_ip
 				  ;;
 			  6)
@@ -1740,7 +1740,7 @@ nginx_waf() {
 		wget -O /home/web/nginx.conf "${gh_proxy}raw.githubusercontent.com/kejilion/nginx/main/nginx10.conf"
 	fi
 
-	# Decide to turn on or off WAF according to the mode parameter
+	# Decide to turn on or off WAF according to mode parameters
 	if [ "$mode" == "on" ]; then
 		# Turn on WAF: Remove comments
 		sed -i 's|# load_module /etc/nginx/modules/ngx_http_modsecurity_module.so;|load_module /etc/nginx/modules/ngx_http_modsecurity_module.so;|' /home/web/nginx.conf > /dev/null 2>&1
@@ -2121,7 +2121,7 @@ web_security() {
 
 				  22)
 					  send_stats "High load on 5 seconds shield"
-					  echo -e "${gl_huang}The website automatically detects every 5 minutes. When high load is detected, the shield will be automatically turned on, and low load will be automatically turned off for 5 seconds.${gl_bai}"
+					  echo -e "${gl_huang}The website automatically detects every 5 minutes. When it reaches the detection of a high load, the shield will be automatically turned on, and the low load will be automatically turned off for 5 seconds.${gl_bai}"
 					  echo "--------------"
 					  echo "Get CF parameters:"
 					  echo -e "Go to the upper right corner of the cf background, select the API token on the left, and obtain it${gl_huang}Global API Key${gl_bai}"
@@ -3946,7 +3946,7 @@ frps_panel() {
 
 			8)
 				send_stats "Block IP access"
-				echo "If you have accessed the anti-generation domain name, you can use this function to block IP+ port access, which is more secure."
+				echo "If you have accessed the anti-generation domain name, use this function to block IP+ port access, which is more secure."
 				read -e -p "Please enter the port you need to block:" frps_port
 				block_host_port "$frps_port" "$ipv4_address"
 				;;
@@ -4989,7 +4989,7 @@ elrepo_install() {
 		linux_Settings
 	fi
 	# Print detected operating system information
-	echo "Operating system detected:$os_name $os_version"
+	echo "Detected operating systems:$os_name $os_version"
 	# Install the corresponding ELRepo warehouse configuration according to the system version
 	if [[ "$os_version" == 8 ]]; then
 		echo "Install ELRepo repository configuration (version 8)..."
@@ -5818,7 +5818,7 @@ list_connections() {
 # Add a new connection
 add_connection() {
 	send_stats "Add a new connection"
-	echo "Example to create a new connection:"
+	echo "Create a new connection example:"
 	echo "- Connection name: my_server"
 	echo "- IP address: 192.168.1.100"
 	echo "- Username: root"
@@ -7517,7 +7517,7 @@ linux_ldnmp() {
 	echo -e "${gl_huang}------------------------"
 	echo -e "${gl_huang}21.  ${gl_bai}Install nginx only${gl_huang}★${gl_bai}                     ${gl_huang}22.  ${gl_bai}Site redirection"
 	echo -e "${gl_huang}23.  ${gl_bai}Site reverse proxy-IP+port${gl_huang}★${gl_bai}            ${gl_huang}24.  ${gl_bai}Site reverse proxy - domain name"
-	echo -e "${gl_huang}25.  ${gl_bai}Install Bitwarden password management platform${gl_huang}26.  ${gl_bai}Install Halo Blog Website"
+	echo -e "${gl_huang}25.  ${gl_bai}Install the Bitwarden password management platform${gl_huang}26.  ${gl_bai}Install Halo Blog Website"
 	echo -e "${gl_huang}27.  ${gl_bai}Install AI Painting Prompt Word Generator${gl_huang}28.  ${gl_bai}Site reverse proxy-load balancing"
 	echo -e "${gl_huang}30.  ${gl_bai}Customize static site"
 	echo -e "${gl_huang}------------------------"
@@ -7693,7 +7693,7 @@ linux_ldnmp() {
 	  echo "Redis port: 6379"
 	  echo ""
 	  echo "Website url: https://$yuming"
-	  echo "Background login path: /admin"
+	  echo "Backend login path: /admin"
 	  echo "------------------------"
 	  echo "Username: admin"
 	  echo "Password: admin"
@@ -8497,7 +8497,7 @@ while true; do
 	  echo -e "${gl_kjlan}21.  ${color21}VScode web version${gl_kjlan}22.  ${color22}UptimeKuma monitoring tool"
 	  echo -e "${gl_kjlan}23.  ${color23}Memos web page memo${gl_kjlan}24.  ${color24}Webtop Remote Desktop Web Edition${gl_huang}★${gl_bai}"
 	  echo -e "${gl_kjlan}25.  ${color25}Nextcloud network disk${gl_kjlan}26.  ${color26}QD-Today timing task management framework"
-	  echo -e "${gl_kjlan}27.  ${color27}Dockge Container Stack Management Panel${gl_kjlan}28.  ${color28}LibreSpeed Speed Test Tool"
+	  echo -e "${gl_kjlan}27.  ${color27}Dockge Container Stack Management Panel${gl_kjlan}28.  ${color28}LibreSpeed ​​Speed ​​Test Tool"
 	  echo -e "${gl_kjlan}29.  ${color29}searxng aggregation search site${gl_huang}★${gl_bai}                 ${gl_kjlan}30.  ${color30}PhotoPrism Private Album System"
 	  echo -e "${gl_kjlan}------------------------"
 	  echo -e "${gl_kjlan}31.  ${color31}StirlingPDF tool collection${gl_kjlan}32.  ${color32}drawio free online charting software${gl_huang}★${gl_bai}"
@@ -8516,7 +8516,7 @@ while true; do
 	  echo -e "${gl_kjlan}53.  ${color53}llama3 chat AI model${gl_kjlan}54.  ${color54}AMH Host Website Building Management Panel"
 	  echo -e "${gl_kjlan}55.  ${color55}FRP intranet penetration (server side)${gl_huang}★${gl_bai}	         ${gl_kjlan}56.  ${color56}FRP intranet penetration (client)${gl_huang}★${gl_bai}"
 	  echo -e "${gl_kjlan}57.  ${color57}Deepseek chat AI big model${gl_kjlan}58.  ${color58}Dify big model knowledge base${gl_huang}★${gl_bai}"
-	  echo -e "${gl_kjlan}59.  ${color59}NewAPI big model asset management${gl_kjlan}60.  ${color60}JumpServer open source bastion machine"
+	  echo -e "${gl_kjlan}59.  ${color59}NewAPI Big Model Asset Management${gl_kjlan}60.  ${color60}JumpServer open source bastion machine"
 	  echo -e "${gl_kjlan}------------------------"
 	  echo -e "${gl_kjlan}61.  ${color61}Online translation server${gl_kjlan}62.  ${color62}RAGFlow big model knowledge base"
 	  echo -e "${gl_kjlan}63.  ${color63}OpenWebUI self-hosted AI platform${gl_huang}★${gl_bai}             ${gl_kjlan}64.  ${color64}it-tools toolbox"
@@ -8534,6 +8534,8 @@ while true; do
 	  echo -e "${gl_kjlan}83.  ${color83}komari server monitoring tool${gl_kjlan}84.  ${color84}Wallos personal financial management tools"
 	  echo -e "${gl_kjlan}85.  ${color85}immich picture video manager${gl_kjlan}86.  ${color86}jellyfin media management system"
 	  echo -e "${gl_kjlan}87.  ${color87}SyncTV movie watching artifact${gl_kjlan}88.  ${color88}Owncast self-hosted live broadcast platform"
+	  echo -e "${gl_kjlan}------------------------"
+	  echo -e "${gl_kjlan}b.   ${gl_bai}Back up all application data${gl_kjlan}r.   ${color88}Restore all application data"
 	  echo -e "${gl_kjlan}------------------------"
 	  echo -e "${gl_kjlan}0.   ${gl_bai}Return to main menu"
 	  echo -e "${gl_kjlan}------------------------${gl_bai}"
@@ -10918,10 +10920,12 @@ while true; do
 
 		docker_rum() {
 
+			read -e -p "set up${docker_name}The login key (sk-staring letters and numbers combinations) such as: sk-159kejilionyyds163:" app_passwd
+
 			mkdir -p /home/docker/gpt-load && \
 			docker run -d --name gpt-load \
 				-p ${docker_port}:3001 \
-				-e AUTH_KEY=sk-123456 \
+				-e AUTH_KEY=${app_passwd} \
 				-v "/home/docker/gpt-load/data":/app/data \
 				tbphp/gpt-load:latest
 
@@ -10929,7 +10933,7 @@ while true; do
 
 		local docker_describe="高性能AI接口透明代理服务"
 		local docker_url="官网介绍: https://www.gpt-load.com/"
-		local docker_use="echo \"默认管理密钥: sk-123456\""
+		local docker_use=""
 		local docker_passwd=""
 		local app_size="1"
 		docker_app
@@ -11135,6 +11139,73 @@ while true; do
 
 		  ;;
 
+	  b)
+	  	clear
+	  	send_stats "All applications backup"
+
+	  	local backup_filename="app_$(date +"%Y%m%d%H%M%S").tar.gz"
+	  	echo -e "${gl_huang}Backing up$backup_filename ...${gl_bai}"
+	  	cd / && tar czvf "$backup_filename" home
+
+	  	while true; do
+			clear
+			echo "The backup file has been created: /$backup_filename"
+			read -e -p "Do you want to transfer backup data to a remote server? (Y/N):" choice
+			case "$choice" in
+			  [Yy])
+				read -e -p "Please enter the remote server IP:" remote_ip
+				if [ -z "$remote_ip" ]; then
+				  echo "Error: Please enter the remote server IP."
+				  continue
+				fi
+				local latest_tar=$(ls -t /app*.tar.gz | head -1)
+				if [ -n "$latest_tar" ]; then
+				  ssh-keygen -f "/root/.ssh/known_hosts" -R "$remote_ip"
+				  sleep 2  # 添加等待时间
+				  scp -o StrictHostKeyChecking=no "$latest_tar" "root@$remote_ip:/"
+				  echo "The file has been transferred to the remote server/root directory."
+				else
+				  echo "The file to be transferred was not found."
+				fi
+				break
+				;;
+			  *)
+				echo "Note: Currently, the backup only includes docker projects, and does not include data backup of website building panels such as Pagoda and 1panel."
+				break
+				;;
+			esac
+	  	done
+
+		  ;;
+
+	  r)
+	  	root_use
+	  	send_stats "All applications restore"
+	  	echo "Available app backups"
+	  	echo "-------------------------"
+	  	ls -lt /app*.gz | awk '{print $NF}'
+	  	echo ""
+	  	read -e -p  "Enter to restore the latest backup, enter the backup file name to restore the specified backup, enter 0 to exit:" filename
+
+	  	if [ "$filename" == "0" ]; then
+			  break_end
+			  linux_panel
+	  	fi
+
+	  	# If the user does not enter the file name, use the latest compressed package
+	  	if [ -z "$filename" ]; then
+			  local filename=$(ls -t /app*.tar.gz | head -1)
+	  	fi
+
+	  	if [ -n "$filename" ]; then
+		  	  echo -e "${gl_huang}Decompression is being done$filename ...${gl_bai}"
+		  	  cd / && tar -xzf "$filename"
+			  echo "The application data has been restored. Please manually enter the specified application menu and update the application to restore the application."
+	  	else
+			  echo "No compression package was found."
+	  	fi
+
+		  ;;
 
 	  0)
 		  kejilion
@@ -11357,7 +11428,7 @@ linux_Settings() {
 	  echo -e "${gl_kjlan}17.  ${gl_bai}Firewall Advanced Manager${gl_kjlan}18.  ${gl_bai}Modify the host name"
 	  echo -e "${gl_kjlan}19.  ${gl_bai}Switch system update source${gl_kjlan}20.  ${gl_bai}Timing task management"
 	  echo -e "${gl_kjlan}------------------------"
-	  echo -e "${gl_kjlan}21.  ${gl_bai}Native host parsing${gl_kjlan}22.  ${gl_bai}SSH Defense Program"
+	  echo -e "${gl_kjlan}21.  ${gl_bai}Native host analysis${gl_kjlan}22.  ${gl_bai}SSH Defense Program"
 	  echo -e "${gl_kjlan}23.  ${gl_bai}Automatic shutdown of current limit${gl_kjlan}24.  ${gl_bai}ROOT private key login mode"
 	  echo -e "${gl_kjlan}25.  ${gl_bai}TG-bot system monitoring and early warning${gl_kjlan}26.  ${gl_bai}Fix OpenSSH high-risk vulnerabilities"
 	  echo -e "${gl_kjlan}27.  ${gl_bai}Red Hat Linux kernel upgrade${gl_kjlan}28.  ${gl_bai}Optimization of kernel parameters in Linux system${gl_huang}★${gl_bai}"
@@ -11832,7 +11903,7 @@ EOF
 				echo "3. Tokyo time in Japan 4. Seoul time in South Korea"
 				echo "5. Singapore time 6. Kolkata time in India"
 				echo "7. Dubai time in the UAE 8. Sydney time in Australia"
-				echo "9. Time in Bangkok, Thailand"
+				echo "9. Bangkok Time, Thailand"
 				echo "------------------------"
 				echo "Europe"
 				echo "11. London time in the UK 12. Paris time in France"
@@ -12003,7 +12074,7 @@ EOF
 								  (crontab -l ; echo "0 0 * * $weekday $newquest") | crontab - > /dev/null 2>&1
 								  ;;
 							  3)
-								  read -e -p "Choose what time to perform tasks every day? (Hours, 0-23):" hour
+								  read -e -p "Choose when to perform tasks every day? (Hours, 0-23):" hour
 								  (crontab -l ; echo "0 $hour * * * $newquest") | crontab - > /dev/null 2>&1
 								  ;;
 							  4)
@@ -12058,7 +12129,7 @@ EOF
 
 						  ;;
 					  2)
-						  read -e -p "Please enter the keywords of parsing content that need to be deleted:" delhost
+						  read -e -p "Please enter the keywords for parsing content that need to be deleted:" delhost
 						  sed -i "/$delhost/d" /etc/hosts
 						  send_stats "Local host parsing and deletion"
 						  ;;
@@ -12632,7 +12703,7 @@ linux_file() {
 			5)  # 删除目录
 				read -e -p "Please enter the directory name to delete:" dirname
 				rm -rf "$dirname" && echo "Directory has been deleted" || echo "Deletion failed"
-				send_stats "Delete Directory"
+				send_stats "Delete directory"
 				;;
 			6)  # 返回上一级选单目录
 				cd ..
