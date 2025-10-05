@@ -1187,7 +1187,7 @@ iptables_panel() {
 
 			  5)
 				  # IP whitelist
-				  read -e -p "Please enter the IP or IP segment to release:" o_ip
+				  read -e -p "Please enter the IP or IP segment to be released:" o_ip
 				  allow_ip $o_ip
 				  ;;
 			  6)
@@ -5980,7 +5980,7 @@ ssh_manager() {
 	while true; do
 		clear
 		echo "SSH Remote Connection Tool"
-		echo "Can connect to other Linux systems via SSH"
+		echo "Can be connected to other Linux systems via SSH"
 		echo "------------------------"
 		list_connections
 		echo "1. Create a new connection 2. Use a connection 3. Delete a connection"
@@ -13032,7 +13032,7 @@ EOF
 								  (crontab -l ; echo "0 0 * * $weekday $newquest") | crontab - > /dev/null 2>&1
 								  ;;
 							  3)
-								  read -e -p "Choose what time to perform tasks every day? (Hours, 0-23):" hour
+								  read -e -p "Choose when to perform tasks every day? (Hours, 0-23):" hour
 								  (crontab -l ; echo "0 $hour * * * $newquest") | crontab - > /dev/null 2>&1
 								  ;;
 							  4)
