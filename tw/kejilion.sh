@@ -5983,7 +5983,7 @@ _kernel_optimize_core() {
 			KEEPALIVE_PROBES=5
 			;;
 		web)
-			# 網站伺服器：高並發優先
+			# 网站服务器：高并发优先
 			SWAPPINESS=10
 			DIRTY_RATIO=20
 			DIRTY_BG_RATIO=10
@@ -11049,7 +11049,7 @@ if not base_url or not api_key or not isinstance(model_list, list) or not model_
     raise SystemExit(3)
 
 if api not in SUPPORTED_APIS:
-    print(f'ℹ️ provider {target} 目前 api={api}，但腳本已不再探測/修正協定；請手動設定為 openai-completions 或 openai-responses')
+    print(f'ℹ️ provider {target} 当前 api={api}，但脚本已不再探测/纠正协议；请手动设置为 openai-completions 或 openai-responses')
 
 protocol_msg = None
 
@@ -13378,7 +13378,7 @@ EOF
 				echo "獲取狀態失敗"
 				continue
 			fi
-			status_lines=$(echo "$status_output" | grep -E "^(Provider|Vector|Indexed|Workspace|Store)" | head -n 5 | sed -e 's/^Provider: /底層方案: /' -e 's/^Vector: /向量庫狀態: /' -e 's/^Indexed: /已收錄文件: /' -e 's/^Workspace: /工作區: /' -e 's/^Store: /索引庫: /')
+			status_lines=$(echo "$status_output" | grep -E "^(Provider|Vector|Indexed|Workspace|Store)" | head -n 5 | sed -e 's/^Provider: /底层方案: /' -e 's/^Vector: /向量庫狀態: /' -e 's/^Indexed: /已收錄文件: /' -e 's/^Workspace: /工作區: /' -e 's/^Store: /索引庫: /')
 			if [ -z "$status_lines" ]; then
 				echo "未安裝/未啟動"
 			else
@@ -13698,7 +13698,7 @@ EOF
 				;;
 		esac
 		if [ "$OPENCLAW_MEMORY_CONFIG_ONLY" = "true" ]; then
-			echo "⚠️ 已选择仅写配置，不安装不下载"
+			echo "⚠️ 已選擇僅寫入配置，不安裝不下載"
 		else
 			echo "✅ 將自動建立索引並重新啟動網關"
 		fi
@@ -14999,7 +14999,7 @@ print("路由綁定數=%s" % len(bindings)); print("✅ 多智能體健康檢查
 
 openclaw_backup_restore_menu() {
 
-		send_stats "OpenClaw備份與還原"
+		send_stats "OpenClaw备份与还原"
 		while true; do
 			clear
 			echo "======================================="
